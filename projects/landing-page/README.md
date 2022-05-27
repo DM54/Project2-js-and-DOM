@@ -6,7 +6,7 @@
 * [Project Title](#project-title)
 * [Installation](#installation)
 * [Contribute](#contribute)
-* [Sponsors](#sponsors)
+* [Sponsor](###sponsor)
 
 ## Instructions
 
@@ -18,13 +18,13 @@ For specific, detailed instructions, look at the project instructions in the Uda
 
 ## Project Title
 
-This is a starter code downloaded and Rename to Poject2 - JS and DOM
+This is a starter code downloaded and Rename to Project2 - JS and DOM
 
 ## Installation
 
 Git Cloned from 'refresh-2019' branch (Udacity NanoDegree Program) starter code for this project.
 
 ## Contribute
-### Sponsors
+### Sponsor
 
 Dyana Monroy owns the copy version from the original contributors.
