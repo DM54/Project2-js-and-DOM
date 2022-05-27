@@ -3,6 +3,10 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
+* [Project Title](#project-title)
+* [Installation](#installation)
+* [Contribute](#contribute)
+* [Sponsors](#sponsors)
 
 ## Instructions
 
@@ -11,3 +15,16 @@ The starter project has some HTML and CSS styling to display a static version of
 To get started, open `js/app.js` and start building out the app's functionality
 
 For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+
+## Project Title
+
+This is a starter code downloaded and Rename to Poject2 - JS and DOM
+
+## Installation
+
+Git Cloned from 'refresh-2019' branch (Udacity NanoDegree Program) starter code for this project.
+
+## Contribute
+### Sponsors
+
+Dyana Monroy owns the copy version from the original contributors.
