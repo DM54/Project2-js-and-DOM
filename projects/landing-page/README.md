@@ -6,7 +6,7 @@
 * [Project Title](#project-title)
 * [Installation](#installation)
 * [Contribute](#contribute)
-* [Sponsor](###sponsor)
+  * [Sponsor](#sponsor)
 
 ## Instructions
 
