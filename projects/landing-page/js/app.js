@@ -48,15 +48,15 @@
  *
  */
  const navbarlist = document.querySelector('.navbar__menu #navbar__list');
- const getnav = document.querySelector('nav');
-getnav.setAttribute("class", "navbar__menu menu__link");
+ //const getnav = document.querySelector('#navbar__list');
+//getnav.setAttribute("class", "menu__link");
 
  const list = () => {
 
    for (let i = 1; i<=4; i++){
      const navlist = document.createElement('li');
      navlist.innerHTML += `<a href="#section${i}">Section ${i}</a>`;
-     //navlist.setAttribute('class', 'menu__link');
+     navlist.setAttribute('class', 'menu__link');
     navbarlist.append(navlist);
   }
 
@@ -66,6 +66,35 @@ list();
 
 
 // Add class 'active' to section when near top of viewport
+
+const viewport = () =>{
+
+  const getsections = document.querySelectorAll('section');
+  console.log(getsections);
+  const maintag = document.querySelector('main');
+  for(let i=0; i<=getsections.length; i++){
+    if(i === 3){
+      const createnewsection = document.createElement('section');
+      createnewsection.setAttribute('id', `section${i}`);
+      createnewsection.setAttribute('data-nav', `Section ${i}`);
+
+      const innercontent = document.querySelector('.landing__container');
+      const clone = innercontent.cloneNode(true);
+      createnewsection.append(clone);
+     //Changed the h2 Text
+      const geth2 = document.getElementById(`section${i}`).querySelector('h2');
+      geth2.innerHTML=`Section ${i}` ;
+      maintag.append(createnewsection);
+      console.log(getsections.length);
+    }
+
+
+
+  }
+
+
+};
+viewport();
 
 
 // Scroll to anchor ID using scrollTO event
@@ -85,15 +114,19 @@ list();
  * add to the section tag that I created.
  *
  */
-const maintag = document.querySelector('main');
+/*const maintag = document.querySelector('main');
 const createnewsection = document.createElement('section');
 createnewsection.setAttribute('id', 'section4');
-createnewsection.setAttribute('data-nav', 'section 4');
+createnewsection.setAttribute('data-nav', 'Section 4');
 maintag.appendChild(createnewsection);
 const innercontent = document.querySelector('.landing__container');
 const clone = innercontent.cloneNode(true);
 //console.log(clone);
 createnewsection.append(clone);
+//Changed the h2 Text
+const geth2 = document.getElementById('section4').querySelector('h2');
+geth2.innerHTML='Section 4';*/
+
 
 
 
