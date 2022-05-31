@@ -29,7 +29,8 @@
  */
 
 let getsections = [...document.querySelectorAll('section')];
-
+// Use in list function
+const navbarlist = document.querySelector('.navbar__menu #navbar__list');
 /**
  * End Global Variables
  * Start Helper Functions
@@ -53,7 +54,7 @@ let getsections = [...document.querySelectorAll('section')];
  * stylesheet.
  *
  */
- const navbarlist = document.querySelector('.navbar__menu #navbar__list');
+
  //const getnav = document.querySelector('#navbar__list');
 //getnav.setAttribute("class", "menu__link");
 
@@ -73,7 +74,33 @@ let getsections = [...document.querySelectorAll('section')];
 
 // Add class 'active' to section when near top of viewport
 
-viewport = (num) =>{
+const viewport = (num) =>{
+
+
+};
+viewport();
+
+
+// Scroll to anchor ID using scrollTO event
+
+
+/**
+ * End Main Functions
+ * Begin Events
+ *
+*/
+
+// Build menu
+/**
+ * created another section in the main which is section 4,
+ * first created another section and set the attributes for the section tag then added to the main tag.
+ * I use cloneNode to the clone everything from the landing__container class and its descendants then
+ * add to the section tag that I created. I declared an array called getsections where it saves created
+ * section to the array with the existing sections.
+ *
+ */
+
+ const createsection = (num) =>{
 
 
   //let section = document.querySelector('section');
@@ -104,39 +131,8 @@ viewport = (num) =>{
   console.log(getsections);
 
 };
-viewport(2);
+createsection(1);
 list();
-
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- *
-*/
-
-// Build menu
-/**
- * created another section in the main which is section 4,
- * first created another section and set the attributes for the section tag then added to the main tag.
- * I use cloneNode to the clone everything from the landing__container class and its descendants then
- * add to the section tag that I created.
- *
- */
-/*const maintag = document.querySelector('main');
-const createnewsection = document.createElement('section');
-createnewsection.setAttribute('id', 'section4');
-createnewsection.setAttribute('data-nav', 'Section 4');
-maintag.appendChild(createnewsection);
-const innercontent = document.querySelector('.landing__container');
-const clone = innercontent.cloneNode(true);
-//console.log(clone);
-createnewsection.append(clone);
-//Changed the h2 Text
-const geth2 = document.getElementById('section4').querySelector('h2');
-geth2.innerHTML='Section 4';*/
-
 
 
 
