@@ -22,7 +22,13 @@
  * Define Global Variables
  *
 */
+/**
+ * getting all section tag and add them to an array which later
+ * it will check how many new sections were added to the array. Then
+ * will update the li node to the exact length of array.
+ */
 
+let getsections = [...document.querySelectorAll('section')];
 
 /**
  * End Global Variables
@@ -42,7 +48,7 @@
 
 /**
  * First look for navbar__menu class and navbar__list id, made arrow function called list
- * to create li for unordered list and use for loop to create 4 li with anchor link inside. Then add them
+ * to create li for unordered list and use for loop getsections.length where it will update automatically with li - anchor link inside. Then add them
  * to the  navbar__menu class and navbar__list id. Also, set attribute called menu_link from the
  * stylesheet.
  *
@@ -53,7 +59,7 @@
 
  const list = () => {
 
-   for (let i = 1; i<=4; i++){
+   for (let i = 1; i<=getsections.length; i++){
      const navlist = document.createElement('li');
      navlist.innerHTML += `<a href="#section${i}">Section ${i}</a>`;
      navlist.setAttribute('class', 'menu__link');
@@ -61,23 +67,22 @@
   }
 
 };
-list();
+
 
 
 
 // Add class 'active' to section when near top of viewport
 
-const viewport = (num) =>{
+viewport = (num) =>{
 
-  let getsections = [...document.querySelectorAll('section')];
+
   //let section = document.querySelector('section');
   let maintag = document.querySelector('main');
   console.log(maintag);
+  let createnewsection = document.createElement('section');
 
-  for(let i=1; i<=getsections.length; i++){
-        if(i === num){
-      let createnewsection = document.createElement('section');
-
+  for(let i=1; i<=num; i++){
+      // if(i===num.length){
       createnewsection.setAttribute('id', `section${i}`);
       createnewsection.setAttribute('data-nav', `Section ${i}`);
 
@@ -90,18 +95,17 @@ const viewport = (num) =>{
       const geth2 = document.getElementById(`section${i}`).querySelector('h2');
       geth2.innerHTML=`Section ${i}` ;
       maintag.append(createnewsection);
+  //}
+  getsections.push(createnewsection);
 
-          getsections.push(createnewsection);
-           console.log(...getsections);
-        }
+}
 
 
-  }
-
+  console.log(getsections);
 
 };
-viewport(3);
-
+viewport(2);
+list();
 
 // Scroll to anchor ID using scrollTO event
 
