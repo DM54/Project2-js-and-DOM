@@ -67,34 +67,40 @@ list();
 
 // Add class 'active' to section when near top of viewport
 
-const viewport = () =>{
+const viewport = (num) =>{
 
-  const getsections = document.querySelectorAll('section');
-  console.log(getsections);
-  const maintag = document.querySelector('main');
-  for(let i=0; i<=getsections.length; i++){
-    if(i === 3){
-      const createnewsection = document.createElement('section');
+  let getsections = [...document.querySelectorAll('section')];
+  //let section = document.querySelector('section');
+  let maintag = document.querySelector('main');
+  console.log(maintag);
+
+  for(let i=1; i<=getsections.length; i++){
+        if(i === num){
+      let createnewsection = document.createElement('section');
+
       createnewsection.setAttribute('id', `section${i}`);
       createnewsection.setAttribute('data-nav', `Section ${i}`);
 
       const innercontent = document.querySelector('.landing__container');
       const clone = innercontent.cloneNode(true);
       createnewsection.append(clone);
+      //section.append(createnewsection);
+
      //Changed the h2 Text
       const geth2 = document.getElementById(`section${i}`).querySelector('h2');
       geth2.innerHTML=`Section ${i}` ;
       maintag.append(createnewsection);
-      console.log(getsections.length);
-    }
 
+          getsections.push(createnewsection);
+           console.log(...getsections);
+        }
 
 
   }
 
 
 };
-viewport();
+viewport(3);
 
 
 // Scroll to anchor ID using scrollTO event
