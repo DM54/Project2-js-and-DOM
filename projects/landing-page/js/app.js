@@ -29,13 +29,18 @@
  */
 
 let getsections = [...document.querySelectorAll('section')];
+let getidsections = document.querySelectorAll('#section');
+console.log(getidsections);
 // Use in list function
+let rectangle;
+let classanchorsec;
 const navbarlist = document.querySelector('.navbar__menu #navbar__list');
 /**
  * End Global Variables
  * Start Helper Functions
  *
 */
+
 
 
 
@@ -55,15 +60,16 @@ const navbarlist = document.querySelector('.navbar__menu #navbar__list');
  *
  */
 
- //const getnav = document.querySelector('#navbar__list');
-//getnav.setAttribute("class", "menu__link");
+ const getnav = document.querySelector('#navbar__list');
+
 
  const list = () => {
 
    for (let i = 1; i<=getsections.length; i++){
      const navlist = document.createElement('li');
      navlist.innerHTML += `<a href="#section${i}">Section ${i}</a>`;
-     navlist.setAttribute('class', 'menu__link');
+     navlist.className="menu__link";
+    // navlist.setAttribute('class', 'menu__link');
     navbarlist.append(navlist);
   }
 
@@ -74,11 +80,41 @@ const navbarlist = document.querySelector('.navbar__menu #navbar__list');
 
 // Add class 'active' to section when near top of viewport
 
-const viewport = (num) =>{
+const viewport = () =>{
 
+
+  for(let i=0; i<=getsections.length; i++){
+   //if(i === getidsec[i]){
+   rectangle = document.body.getBoundingClientRect();
+  // getidsec = getsections[i].document.querySelectorAll(`#section${i}`);
+   //console.log(getidsec[i]);
+  // console.log(rectangle);
+  //classanchorsec = getsections[i].className='your-active-class';
+  //console.log(classanchorsec);
+    if(getsections[i].scrollTo(rectangle.left, rectangle.top )){
+           console.log(getsections[i]);
+           getsections[i].classList.add('active');
+            console.log(
+              "Left:" + rectangle.left + " Top:" + rectangle.top + " Right:"+ rectangle.right + " Bottom:" + rectangle.bottom + " Width:" + rectangle.width +
+              " Height:" + rectangle.height
+            );
+
+
+    }
+    else {
+     // console.log(getsections[i]);
+
+     getsections[i].classList.remove('active');
+    }
+  /* console.log(
+    "Left:" + rectangle.left + " Top:" + rectangle.top + " Right:"+ rectangle.right + " Bottom:" + rectangle.bottom + " Width:" + rectangle.width +
+    " Height:" + rectangle.height
+  );*/
+ // }
+  }
 
 };
-viewport();
+
 
 
 // Scroll to anchor ID using scrollTO event
@@ -92,11 +128,13 @@ viewport();
 
 // Build menu
 /**
+ * num will be for the amount of sections want to be created, for example, num =2 will create two more sections
+ * for the menu.
  * created another section in the main which is section 4,
  * first created another section and set the attributes for the section tag then added to the main tag.
  * I use cloneNode to the clone everything from the landing__container class and its descendants then
  * add to the section tag that I created. I declared an array called getsections where it saves created
- * section to the array with the existing sections.
+ * sections to the array with the existing sections.
  *
  */
 
@@ -106,36 +144,29 @@ viewport();
   //let section = document.querySelector('section');
   let maintag = document.querySelector('main');
   console.log(maintag);
-  let createnewsection = document.createElement('section');
-
+  let createnewsection;
+  //let count =0;
   for(let i=1; i<=num; i++){
-      // if(i===num.length){
+      createnewsection= document.createElement('section');
       createnewsection.setAttribute('id', `section${i}`);
       createnewsection.setAttribute('data-nav', `Section ${i}`);
-
-      const innercontent = document.querySelector('.landing__container');
-      const clone = innercontent.cloneNode(true);
-      createnewsection.append(clone);
-      //section.append(createnewsection);
-
-     //Changed the h2 Text
-      const geth2 = document.getElementById(`section${i}`).querySelector('h2');
-      geth2.innerHTML=`Section ${i}` ;
+    //Changed the h2 Text
+     const geth2 = document.getElementById(`section${i}`).querySelector('h2');
+     geth2.innerHTML=`Section ${i}` ;
+     const innercontent = document.querySelector('.landing__container');
+     const clone = innercontent.cloneNode(true);
+     createnewsection.append(clone);
+      getsections.push(createnewsection);
       maintag.append(createnewsection);
-  //}
-  getsections.push(createnewsection);
-
-}
-
-
+  }
   console.log(getsections);
 
 };
-createsection(1);
+createsection(2);
 list();
+//viewport();
 
-
-
+document.addEventListener('scroll', () =>{getsections.onscroll = viewport()});
 // Scroll to section on link click
 
 // Set sections as active
