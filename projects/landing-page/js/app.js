@@ -89,18 +89,19 @@ const getidsections = () =>{
 
 const viewport = () =>{
 
-
+let getidsec;
+let classanchorsec;
   for(let i=0; i<=getsections.length; i++){
    //if(i === getidsec[i]){
    rectangle = document.body.getBoundingClientRect();
-  // getidsec = getsections[i].document.querySelectorAll(`#section${i}`);
-   //console.log(getidsec[i]);
+  getidsec = document.querySelectorAll(`#section${i}`);
+   //console.log(getidsec);
   // console.log(rectangle);
-  //classanchorsec = getsections[i].className='your-active-class';
+  classanchorsec = getsections.className='your-active-class';
   //console.log(classanchorsec);
-    if(getsections[i].scrollTo(rectangle.left, rectangle.top )){
-           console.log(getsections[i]);
-           getsections[i].classList.add('active');
+    if(getidsec.scrollTo(rectangle.left, rectangle.top )){
+           console.log(getsections);
+           classanchorsec.classList.add('active');
             console.log(
               "Left:" + rectangle.left + " Top:" + rectangle.top + " Right:"+ rectangle.right + " Bottom:" + rectangle.bottom + " Width:" + rectangle.width +
               " Height:" + rectangle.height
@@ -111,7 +112,7 @@ const viewport = () =>{
     else {
      // console.log(getsections[i]);
 
-     getsections[i].classList.remove('active');
+     classanchorsec.classList.remove('active');
     }
   /* console.log(
     "Left:" + rectangle.left + " Top:" + rectangle.top + " Right:"+ rectangle.right + " Bottom:" + rectangle.bottom + " Width:" + rectangle.width +
@@ -178,7 +179,7 @@ list();
 //getidsections();
 //viewport();
 
-//document.addEventListener('scroll', () =>{getsections.onscroll = viewport()});
+document.addEventListener('scroll', () =>{getsections.onscroll = viewport()});
 // Scroll to section on link click
 
 // Set sections as active
