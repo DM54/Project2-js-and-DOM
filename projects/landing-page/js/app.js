@@ -29,18 +29,25 @@
  */
 
 let getsections = [...document.querySelectorAll('section')];
-let getidsections = document.querySelectorAll('#section');
-console.log(getidsections);
-// Use in list function
+//let getidsections = document.querySelectorAll('#section');
+//console.log(getidsections);
 let rectangle;
 let classanchorsec;
+// Use in list function
 const navbarlist = document.querySelector('.navbar__menu #navbar__list');
 /**
  * End Global Variables
  * Start Helper Functions
  *
 */
+const getidsections = () =>{
 
+        for(let i=0; i<=getsections.length; i++){
+            console.log(getsections[i].getAttribute('id'));
+        }
+    //  console.log(getsec);
+
+};
 
 
 
@@ -139,20 +146,17 @@ const viewport = () =>{
  */
 
  const createsection = (num) =>{
-
-
   //let section = document.querySelector('section');
   let maintag = document.querySelector('main');
-  console.log(maintag);
+  //console.log(maintag);
   let createnewsection;
   //let count =0;
   for(let i=1; i<=num; i++){
+
       createnewsection= document.createElement('section');
-      createnewsection.setAttribute('id', `section${i}`);
-      createnewsection.setAttribute('data-nav', `Section ${i}`);
-    //Changed the h2 Text
-     const geth2 = document.getElementById(`section${i}`).querySelector('h2');
-     geth2.innerHTML=`Section ${i}` ;
+      createnewsection.setAttribute('id', `section${i+3}`);
+      createnewsection.setAttribute('data-nav', `Section ${i+3}`);
+
      const innercontent = document.querySelector('.landing__container');
      const clone = innercontent.cloneNode(true);
      createnewsection.append(clone);
@@ -160,13 +164,21 @@ const viewport = () =>{
       maintag.append(createnewsection);
   }
   console.log(getsections);
+      //Changed the h2 Text from the section array
+  for(let j=1; j<=getsections.length; j++){
+
+    const geth2 = document.getElementById(`section${j}`).querySelector('h2');
+    //console.log(geth2);
+    geth2.innerHTML=`Section ${j}`;
+  }
 
 };
-createsection(2);
+createsection(3);
 list();
+//getidsections();
 //viewport();
 
-document.addEventListener('scroll', () =>{getsections.onscroll = viewport()});
+//document.addEventListener('scroll', () =>{getsections.onscroll = viewport()});
 // Scroll to section on link click
 
 // Set sections as active
