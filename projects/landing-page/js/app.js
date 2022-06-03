@@ -29,8 +29,12 @@
  */
 
 let getsections = [...document.querySelectorAll('section')];
-//let getidsections = document.querySelectorAll('#section');
-//console.log(getidsections);
+/*let getidsection = document.getElementById('section');
+console.log(getidsection);*/
+/**
+ * Declared rectangle and classanchorsec which are used in the viewport function
+ * and for the getBoundingClientRect().
+ */
 let rectangle;
 let classanchorsec;
 // Use in list function
@@ -41,11 +45,30 @@ const navbarlist = document.querySelector('.navbar__menu #navbar__list');
  *
 */
 const getidsections = () =>{
+  let getid;
 
         for(let i=0; i<=getsections.length; i++){
-            console.log(getsections[i].getAttribute('id'));
+          getid = document.querySelectorAll(`#section${i}`);
+          console.log(getid);
+         return getid.getAttribute('id');
         }
-    //  console.log(getsec);
+
+};
+
+/**
+ * This function is called in the createsection function whenever new section is created
+ * and push to the getsection array, this function will loop through the sections and get the h2
+ * to change the text.
+ */
+const h2 = () =>{
+
+  //Changed the h2 Text from the section array
+  for(let j=1; j<=getsections.length; j++){
+
+    const geth2 = document.getElementById(`section${j}`).querySelector('h2');
+    //console.log(geth2);
+    geth2.innerHTML=`Section ${j}`;
+  }
 
 };
 
@@ -90,36 +113,23 @@ const getidsections = () =>{
 const viewport = () =>{
 
 let getidsec;
-let classanchorsec;
-  for(let i=0; i<=getsections.length; i++){
+
+  for(let i=1; i<=getsections.length; i++){
    //if(i === getidsec[i]){
-   rectangle = document.body.getBoundingClientRect();
-  getidsec = document.querySelectorAll(`#section${i}`);
-   //console.log(getidsec);
-  // console.log(rectangle);
-  classanchorsec = getsections.className='your-active-class';
-  //console.log(classanchorsec);
-    if(getidsec.scrollTo(rectangle.left, rectangle.top )){
-           console.log(getsections);
-           classanchorsec.classList.add('active');
-            console.log(
-              "Left:" + rectangle.left + " Top:" + rectangle.top + " Right:"+ rectangle.right + " Bottom:" + rectangle.bottom + " Width:" + rectangle.width +
-              " Height:" + rectangle.height
-            );
+
+  getidsec =  document.getElementById(`section${i}`);
 
 
+   if(getidsec.className === 'your-active-class'){
+        getidsec.classList.toggle('active');
+        }
+  else{
+
+      getidsec.classList.add('active');
     }
-    else {
-     // console.log(getsections[i]);
+}
 
-     classanchorsec.classList.remove('active');
-    }
-  /* console.log(
-    "Left:" + rectangle.left + " Top:" + rectangle.top + " Right:"+ rectangle.right + " Bottom:" + rectangle.bottom + " Width:" + rectangle.width +
-    " Height:" + rectangle.height
-  );*/
- // }
-  }
+
 
 };
 
@@ -127,12 +137,6 @@ let classanchorsec;
 
 // Scroll to anchor ID using scrollTO event
 
-
-/**
- * End Main Functions
- * Begin Events
- *
-*/
 
 // Build menu
 /**
@@ -165,21 +169,43 @@ let classanchorsec;
       maintag.append(createnewsection);
   }
   console.log(getsections);
-      //Changed the h2 Text from the section array
-  for(let j=1; j<=getsections.length; j++){
-
-    const geth2 = document.getElementById(`section${j}`).querySelector('h2');
-    //console.log(geth2);
-    geth2.innerHTML=`Section ${j}`;
-  }
-
+  h2();
 };
-createsection(3);
+createsection(2);
 list();
-//getidsections();
+getidsections();
 //viewport();
 
-document.addEventListener('scroll', () =>{getsections.onscroll = viewport()});
+
+/**
+ * End Main Functions
+ * Begin Events
+ *
+*/
+
+/*document.addEventListener("scroll", () =>{
+  for(let i=1; i<=getsections.length; i++){
+    //if(i === getidsec[i]){
+
+   getidsec =  document.getElementById(`section${i}`);
+
+  // console.log(getidsec);
+   rectangle = getidsec.getBoundingClientRect();
+  // console.log(rectangle);
+  // classanchorsec = getsections.className='your-active-class';
+  // console.log(classanchorsec);
+   const para = document.getElementsByTagName('p');
+   para.innerHTML += `Left:  ${rectangle.left}, Top: ${rectangle.top}, Right: ${rectangle.right}, Bottom:  ${rectangle.bottom}, Width: ${rectangle.width}
+    Height: ${rectangle.height}`;
+
+ if(window.scrollTo(rectangle.left,rectangle.top)){
+   viewport();
+ }
+ else{
+   return null;
+ }
+}
+ });*/
 // Scroll to section on link click
 
 // Set sections as active
