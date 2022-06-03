@@ -37,6 +37,9 @@ console.log(getidsection);*/
  */
 let rectangle;
 let classanchorsec;
+let getid;
+let text;
+
 // Use in list function
 const navbarlist = document.querySelector('.navbar__menu #navbar__list');
 /**
@@ -45,13 +48,14 @@ const navbarlist = document.querySelector('.navbar__menu #navbar__list');
  *
 */
 const getidsections = () =>{
-  let getid;
 
-        for(let i=0; i<=getsections.length; i++){
-          getid = document.querySelectorAll(`#section${i}`);
+        for(let i=0; i<=getsections.length-1; i++){
+          getid = document.getElementsByTagName('section')[i];
           console.log(getid);
-         return getid.getAttribute('id');
+          text = getid.getAttribute('id');
+
         }
+        return text;
 
 };
 
@@ -113,23 +117,29 @@ const h2 = () =>{
 const viewport = () =>{
 
 let getidsec;
+let highlight;
 
   for(let i=1; i<=getsections.length; i++){
    //if(i === getidsec[i]){
 
   getidsec =  document.getElementById(`section${i}`);
-
+   console.log(getidsec);
 
    if(getidsec.className === 'your-active-class'){
         getidsec.classList.toggle('active');
+        highlight = getidsec.getAttribute('class');
+        console.log(highlight);
+       // highlight.style.background = 'purple';
         }
-  else{
+  else if(getidsec.className === ''){
 
-      getidsec.classList.add('active');
+      getidsec.setAttribute('class', '');
+      //getidsec.style.backgroundColor = 'purple';
+    }
+    else{
+      getidsec.classList.remove('active');
     }
 }
-
-
 
 };
 
@@ -173,8 +183,8 @@ let getidsec;
 };
 createsection(2);
 list();
-getidsections();
-//viewport();
+//getidsections();
+viewport();
 
 
 /**
@@ -183,29 +193,29 @@ getidsections();
  *
 */
 
-/*document.addEventListener("scroll", () =>{
+document.addEventListener("scroll", () =>{
+  let sectionbox;
   for(let i=1; i<=getsections.length; i++){
-    //if(i === getidsec[i]){
+    sectionbox = document.getElementById(`section${i}`);
+    //console.log(sectionbox);
+   rectangle = sectionbox.getBoundingClientRect();
+  }
+  console.log( "Left: " + rectangle.left+ " Top:" + rectangle.top + " Right:" + rectangle.right + " Bottom:" + rectangle.bottom + " Width:" + rectangle.width +
+  " Height:" + rectangle.height);
 
-   getidsec =  document.getElementById(`section${i}`);
-
-  // console.log(getidsec);
-   rectangle = getidsec.getBoundingClientRect();
-  // console.log(rectangle);
-  // classanchorsec = getsections.className='your-active-class';
-  // console.log(classanchorsec);
-   const para = document.getElementsByTagName('p');
+   /*const para = document.getElementsByTagName('p');
    para.innerHTML += `Left:  ${rectangle.left}, Top: ${rectangle.top}, Right: ${rectangle.right}, Bottom:  ${rectangle.bottom}, Width: ${rectangle.width}
-    Height: ${rectangle.height}`;
+    Height: ${rectangle.height}`;*/
 
- if(window.scrollTo(rectangle.left,rectangle.top)){
+
+ /*if(window.scrollTo(rectangle.left,rectangle.top)){
    viewport();
  }
  else{
    return null;
- }
-}
- });*/
+ }*/
+
+ });
 // Scroll to section on link click
 
 // Set sections as active
