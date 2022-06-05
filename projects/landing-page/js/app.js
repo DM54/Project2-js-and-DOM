@@ -120,25 +120,25 @@ let getidsec;
 let highlight;
 
   for(let i=1; i<=getsections.length; i++){
-   //if(i === getidsec[i]){
 
   getidsec =  document.getElementById(`section${i}`);
-   console.log(getidsec);
+   //console.log(getidsec);
 
-   if(getidsec.className === 'your-active-class'){
-        getidsec.classList.toggle('active');
-        highlight = getidsec.getAttribute('class');
-        console.log(highlight);
-       // highlight.style.background = 'purple';
-        }
-  else if(getidsec.className === ''){
+    if(getidsec.className === 'your-active-class'){
+          getidsec.classList.add('active');
 
-      getidsec.setAttribute('class', '');
-      //getidsec.style.backgroundColor = 'purple';
-    }
+          }
+    else if (getidsec.className === ''){
+
+        getidsec.setAttribute('class', '');
+        getidsec.classList.add('active');
+
+      }
+
     else{
-      getidsec.classList.remove('active');
-    }
+        getidsec.classList.remove('active');
+      }
+
 }
 
 };
@@ -195,25 +195,27 @@ viewport();
 
 document.addEventListener("scroll", () =>{
   let sectionbox;
+  let top;
   for(let i=1; i<=getsections.length; i++){
     sectionbox = document.getElementById(`section${i}`);
-    //console.log(sectionbox);
-   rectangle = sectionbox.getBoundingClientRect();
-  }
-  console.log( "Left: " + rectangle.left+ " Top:" + rectangle.top + " Right:" + rectangle.right + " Bottom:" + rectangle.bottom + " Width:" + rectangle.width +
-  " Height:" + rectangle.height);
+  //console.log(sectionbox);
+  rectangle = sectionbox.getBoundingClientRect();
+  sectionbox.className === '';
+  sectionbox.setAttribute('class', '');
+  top = sectionbox.scrollTop = rectangle.top;
 
-   /*const para = document.getElementsByTagName('p');
-   para.innerHTML += `Left:  ${rectangle.left}, Top: ${rectangle.top}, Right: ${rectangle.right}, Bottom:  ${rectangle.bottom}, Width: ${rectangle.width}
-    Height: ${rectangle.height}`;*/
+   if(top < window.innerHeight){
 
+    sectionbox.classList.add('active');
 
- /*if(window.scrollTo(rectangle.left,rectangle.top)){
-   viewport();
- }
- else{
-   return null;
- }*/
+    }
+    else {
+      sectionbox.classList.remove('active');
+    }
+
+    console.log( "Left: " + rectangle.left+ " Top:" + rectangle.top + " width" + rectangle.width + " height" + rectangle.height);
+}
+
 
  });
 // Scroll to section on link click
