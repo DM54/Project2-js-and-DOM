@@ -32,22 +32,27 @@ let getsections = [...document.querySelectorAll('section')];
 /*let getidsection = document.getElementById('section');
 console.log(getidsection);*/
 /**
- * Declared rectangle and classanchorsec which are used in the viewport function
+ * Declared rectangle which are used in the scroll event listener function
  * and for the getBoundingClientRect().
  */
 let rectangle;
-let classanchorsec;
+/* Declared getid and text for getidsections function.
 let getid;
-let text;
+let text;*/
 
-// Use in list function
+// Use in list function, the unorderlist (ul) has navbar__list id where it will have li node being added
+//whenever new section is made from the createsection function.
 const navbarlist = document.querySelector('.navbar__menu #navbar__list');
 /**
  * End Global Variables
  * Start Helper Functions
  *
 */
-const getidsections = () =>{
+/**
+ * This function return the sections id value, loop the getsection array to get section tags
+ * then get the id attribute value.
+ */
+/*const getidsections = () =>{
 
         for(let i=0; i<=getsections.length-1; i++){
           getid = document.getElementsByTagName('section')[i];
@@ -57,7 +62,7 @@ const getidsections = () =>{
         }
         return text;
 
-};
+};*/
 
 /**
  * This function is called in the createsection function whenever new section is created
@@ -95,15 +100,18 @@ const h2 = () =>{
  */
 
  const getnav = document.querySelector('#navbar__list');
+ //getnav.classList.add('menu__link');
 
 
  const list = () => {
 
    for (let i = 1; i<=getsections.length; i++){
      const navlist = document.createElement('li');
-     navlist.innerHTML += `<a href="#section${i}">Section ${i}</a>`;
-     navlist.className="menu__link";
-    // navlist.setAttribute('class', 'menu__link');
+     const anchor = document.createElement('a');
+     anchor.innerHTML += `Section ${i}`;
+     anchor.setAttribute('href', `#section${i}`);
+     navlist.appendChild(anchor);
+     navlist.classList.add('menu__link');
     navbarlist.append(navlist);
   }
 
@@ -113,37 +121,41 @@ const h2 = () =>{
 
 
 // Add class 'active' to section when near top of viewport
-
+/**
+ * The viewport function will go through a loop of getsections array and
+ * loop through the section ids which then will get the size of each section
+ * using built in function called .getBoundingClientRect().
+ * Each ids will be set class attributes and then will compare the top and bottom size with the
+ * window height. So the window height is 918, when the top is less than and bottom is greater than
+ *  the window height it should make the classes as active when it is in the view or near in view. But, if
+ * it is not then it should remove the classes as active. A event listener is added at the end where it call the viewport
+ * function when it is scrolling.
+ */
 const viewport = () =>{
-
-let getidsec;
-let highlight;
-
+  let sectionbox;
+  let top;
   for(let i=1; i<=getsections.length; i++){
+    sectionbox = document.getElementById(`section${i}`);
+  //console.log(sectionbox);
+  rectangle = sectionbox.getBoundingClientRect();
+  sectionbox.className === '';
+  sectionbox.setAttribute('class', '');
+  //top = sectionbox.scrollTop += rectangle.top;
 
-  getidsec =  document.getElementById(`section${i}`);
-   //console.log(getidsec);
+   if(rectangle.top < window.innerHeight && rectangle.bottom > window.innerHeight){
 
-    if(getidsec.className === 'your-active-class'){
-          getidsec.classList.add('active');
+    sectionbox.classList.add('active');
+    /*let id = document.querySelector('#navbar__list');
+    console.log(id);*/
 
-          }
-    else if (getidsec.className === ''){
-
-        getidsec.setAttribute('class', '');
-        getidsec.classList.add('active');
-
-      }
-
+    }
     else{
-        getidsec.classList.remove('active');
-      }
-
+      sectionbox.classList.remove('active');
+    }
+     //console.log(window.innerHeight);
+    //console.log( "Left: " + rectangle.left+ " Top:" + rectangle.top + " Bottom " + rectangle.bottom);
 }
-
 };
-
-
 
 // Scroll to anchor ID using scrollTO event
 
@@ -178,13 +190,13 @@ let highlight;
       getsections.push(createnewsection);
       maintag.append(createnewsection);
   }
-  console.log(getsections);
+  //console.log(getsections);
   h2();
 };
 createsection(2);
 list();
 //getidsections();
-viewport();
+//viewport();
 
 
 /**
@@ -192,32 +204,10 @@ viewport();
  * Begin Events
  *
 */
-
-document.addEventListener("scroll", () =>{
-  let sectionbox;
-  let top;
-  for(let i=1; i<=getsections.length; i++){
-    sectionbox = document.getElementById(`section${i}`);
-  //console.log(sectionbox);
-  rectangle = sectionbox.getBoundingClientRect();
-  sectionbox.className === '';
-  sectionbox.setAttribute('class', '');
-  top = sectionbox.scrollTop = rectangle.top;
-
-   if(top < window.innerHeight){
-
-    sectionbox.classList.add('active');
-
-    }
-    else {
-      sectionbox.classList.remove('active');
-    }
-
-    console.log( "Left: " + rectangle.left+ " Top:" + rectangle.top + " width" + rectangle.width + " height" + rectangle.height);
-}
-
-
- });
+/*This event listener listen for scroll and check viewport function
+* where it check which section is in or nearest top view to add class as active
+*/
+document.addEventListener("scroll", () =>{viewport()});
 // Scroll to section on link click
 
 // Set sections as active
