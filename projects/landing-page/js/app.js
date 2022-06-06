@@ -110,9 +110,9 @@ const h2 = () =>{
      const anchor = document.createElement('a');
      anchor.innerHTML += `Section ${i}`;
      anchor.setAttribute('href', `#section${i}`);
+     anchor.classList.add('menu__link');
      navlist.appendChild(anchor);
-     navlist.classList.add('menu__link');
-    navbarlist.append(navlist);
+     navbarlist.append(navlist);
   }
 
 };
@@ -142,11 +142,12 @@ const viewport = () =>{
   sectionbox.setAttribute('class', '');
   //top = sectionbox.scrollTop += rectangle.top;
 
-   if(rectangle.top < window.innerHeight && rectangle.bottom > window.innerHeight){
+   if((rectangle.top < window.innerHeight) && (rectangle.bottom > window.innerHeight)){
 
     sectionbox.classList.add('active');
-    /*let id = document.querySelector('#navbar__list');
-    console.log(id);*/
+    /*let id = [...document.querySelectorAll('a')];
+    console.log(id);
+    id.style.backgroundColor = 'black';*/
 
     }
     else{
@@ -209,6 +210,18 @@ list();
 */
 document.addEventListener("scroll", () =>{viewport()});
 // Scroll to section on link click
+let a = [...document.querySelectorAll('a')];
+const click = () =>{
+for(let h=0; h<a.length; h++){
+  //console.log(a[h]);
+  a[h].addEventListener("click", () =>{
+    //console.log("hey Im clicked");
+     window.scrollBy({behavior: 'smooth'});
+  });
+
+}
+};
+
 
 // Set sections as active
 
