@@ -210,17 +210,27 @@ list();
 */
 document.addEventListener("scroll", () =>{viewport()});
 // Scroll to section on link click
-let a = [...document.querySelectorAll('a')];
+/*let a = [...document.querySelectorAll('a')];
 const click = () =>{
 for(let h=0; h<a.length; h++){
   //console.log(a[h]);
-  a[h].addEventListener("click", () =>{
-    //console.log("hey Im clicked");
-     window.scrollBy({behavior: 'smooth'});
+  a[h].addEventListener("click", (event) =>{
+    console.log("hey Im clicked");
+     window.scrollTo({behavior: 'smooth'});
+
+
   });
 
 }
 };
+click();*/
+let a = [...document.querySelectorAll('a')];
+getnav.addEventListener('click', (event) =>{
+  console.log('hey im from nav list');
+  //event.preventDefault();
+  window.scrollTo({ top: 900, behavior: 'smooth'});
+
+});
 
 
 // Set sections as active
