@@ -43,6 +43,9 @@ let text;*/
 // Use in list function, the unorderlist (ul) has navbar__list id where it will have li node being added
 //whenever new section is made from the createsection function.
 const navbarlist = document.querySelector('.navbar__menu #navbar__list');
+//The click function is addeventlistener for <a> tag link and to scroll smoothly. Called in href <a> tag and implemented in
+//attributes. Can find it in the list function and the click function at the end of this file.
+let click =()=>{};
 /**
  * End Global Variables
  * Start Helper Functions
@@ -109,7 +112,8 @@ const h2 = () =>{
      const navlist = document.createElement('li');
      const anchor = document.createElement('a');
      anchor.innerHTML += `Section ${i}`;
-     anchor.setAttribute('href', `#section${i}`);
+     //anchor.setAttribute('href', `#section${i}`);
+     anchor.setAttribute('href', `javascript:click()`);
      anchor.classList.add('menu__link');
      navlist.appendChild(anchor);
      navbarlist.append(navlist);
@@ -131,6 +135,7 @@ const h2 = () =>{
  * it is not then it should remove the classes as active. A event listener is added at the end where it call the viewport
  * function when it is scrolling.
  */
+
 const viewport = () =>{
   let sectionbox;
   let top;
@@ -142,13 +147,15 @@ const viewport = () =>{
   sectionbox.setAttribute('class', '');
   //top = sectionbox.scrollTop += rectangle.top;
 
-   if((rectangle.top < window.innerHeight) && (rectangle.bottom > window.innerHeight)){
+   if((rectangle.top <= window.innerHeight) && (rectangle.bottom >= window.innerHeight)){
 
     sectionbox.classList.add('active');
     /*let id = [...document.querySelectorAll('a')];
     console.log(id);
     id.style.backgroundColor = 'black';*/
 
+    } else if ((rectangle.top >= window.innerHeight) && (rectangle.bottom <= window.innerHeight)) {
+      sectionbox.classList.add('active');
     }
     else{
       sectionbox.classList.remove('active');
@@ -210,27 +217,37 @@ list();
 */
 document.addEventListener("scroll", () =>{viewport()});
 // Scroll to section on link click
-/*let a = [...document.querySelectorAll('a')];
-const click = () =>{
+/**
+ * This is the click function declared globaly, it is looping through the <a> tag whenever it is clicked the addeventlistener
+ * is tiggered to get the scrollintoview() to scroll smoothly to the sections ids.
+ */
+let a = [...document.querySelectorAll('a')];
+//console.log(a);
+click = () =>{
 for(let h=0; h<a.length; h++){
   //console.log(a[h]);
+ let id = document.getElementById(`section${h+1}`);
+ //let secs = document.querySelectorAll('section');
+ //console.log(secs[h]);
+  //console.log(id);
   a[h].addEventListener("click", (event) =>{
-    console.log("hey Im clicked");
-     window.scrollTo({behavior: 'smooth'});
 
+     id.scrollIntoView({behavior: 'smooth'});
+
+  //console.log(id);
 
   });
 
 }
 };
-click();*/
-let a = [...document.querySelectorAll('a')];
+//click();
+/*let a = [...document.querySelectorAll('a')];
 getnav.addEventListener('click', (event) =>{
   console.log('hey im from nav list');
   //event.preventDefault();
   window.scrollTo({ top: 900, behavior: 'smooth'});
 
-});
+});*/
 
 
 // Set sections as active
