@@ -2,19 +2,17 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
+
 * [Project Title](#project-title)
 * [Installation](#installation)
+* [Usage](#usage)
+* [Development](#development)
 * [Contribute](#contribute)
   * [Sponsor](#sponsor)
+  * [Adding new feature or fixing bugs](#adding-new-feature-or-fixing-bugs)
+* [Resources](#resources)
+* [Footer](#footer)
 
-## Instructions
-
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
 
 ## Project Title
 
@@ -24,7 +22,34 @@ This is a starter code downloaded and Rename to Project2 - JS and DOM
 
 Git Cloned from 'refresh-2019' branch (Udacity NanoDegree Program) starter code for this project.
 
+## Usage
+
+  - Visual Studio Code
+  - Git
+  - GitHub
+
+## Development
+
+Implemented the starter code in Visual Studio Code, mostly javascript - app.js and saved the files to my Github account.
+
 ## Contribute
+
+Dyana Monroy
+
 ### Sponsor
 
-Dyana Monroy owns the copy version from the original contributors.
+Udacity NanoDegree Program
+
+### Adding new feature or fixing bugs
+
+Dyana Monroy
+
+## Resources
+I used two main links that helped me to understand and completed my project
+The following are:
+  - [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web)
+  - [W3Schools](https://www.w3schools.com/js/default.asp)
+
+## Footer
+
+Dyana Monroy 2022

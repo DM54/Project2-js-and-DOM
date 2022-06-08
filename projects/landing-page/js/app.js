@@ -229,7 +229,7 @@ for(let h=0; h<a.length; h++){
  let id = document.getElementById(`section${h+1}`);
  //let secs = document.querySelectorAll('section');
  //console.log(secs[h]);
-  //console.log(id);
+ //console.log(id);
   a[h].addEventListener("click", (event) =>{
 
      id.scrollIntoView({behavior: 'smooth'});
