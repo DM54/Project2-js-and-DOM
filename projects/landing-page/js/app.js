@@ -154,8 +154,6 @@ const viewport = () =>{
     console.log(id);
     id.style.backgroundColor = 'black';*/
 
-    } else if ((rectangle.top >= window.innerHeight) && (rectangle.bottom <= window.innerHeight)) {
-      sectionbox.classList.add('active');
     }
     else{
       sectionbox.classList.remove('active');
@@ -232,23 +230,42 @@ for(let h=0; h<a.length; h++){
  //console.log(id);
   a[h].addEventListener("click", (event) =>{
 
-     id.scrollIntoView({behavior: 'smooth'});
+   id.scrollIntoView({behavior: 'smooth'});
+
+   if (a[h].clicked){
+     //event.preventDefault();
+    a[h].classList.remove('active');
+    a[h].removeAttribute('style');
+   }
+
+   else if (a[h].click){
+    a[h].classList.add('active');
+    a[h].setAttribute('style', 'color: white; background-color: black;');
+   }
 
   //console.log(id);
-
   });
-
 }
 };
 //click();
-/*let a = [...document.querySelectorAll('a')];
-getnav.addEventListener('click', (event) =>{
-  console.log('hey im from nav list');
-  //event.preventDefault();
-  window.scrollTo({ top: 900, behavior: 'smooth'});
 
-});*/
+/*const checkingclicks = () => {
 
+  let getclass = document.getElementsByClassName('menu__link');
+  for(let h =0; h<getclass.length; h++){
+
+
+      if(getclass[h].addEventListener('click',()=>click())){
+       getclass[h].classList.add("active");
+        getclass[h].style.backgroundColor = 'black';
+      }
+      else{
+       getclass[h].classList.remove("active");
+      }
+
+}
+};
+checkingclicks();*/
 
 // Set sections as active
 
