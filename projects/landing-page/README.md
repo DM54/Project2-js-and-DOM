@@ -45,7 +45,7 @@ Udacity NanoDegree Program
 Dyana Monroy
 
 ## Resources
-I used two main links that helped me to understand and completed my project
+I used two main links that helped me to understand and completed my project.
 The following are:
   - [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web)
   - [W3Schools](https://www.w3schools.com/js/default.asp)
