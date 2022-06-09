@@ -219,28 +219,35 @@ document.addEventListener("scroll", () =>{viewport()});
  * This is the click function declared globaly, it is looping through the <a> tag whenever it is clicked the addeventlistener
  * is tiggered to get the scrollintoview() to scroll smoothly to the sections ids.
  */
-
- const checkingclicks = (event) => {
-  let  clicked = event.target;
+ let  clicked;
+ const checkingclicks = (evt) => {
+  clicked = evt.target;
 
   //console.log(clicked);
   let getid;
-  for(let h =0; h<getsections.length; h++){
-    getid = document.getElementById(`section${h+1}`);
-    if(clicked){
+  /*for(let h =0; h<getsections.length; h++){
+    getid = document.getElementById(`section${h+1}`);*/
+    if(clicked.classList.contains('active') == false){
     //console.log(getclass[h]);
     clicked.classList.add('active');
     clicked.setAttribute('style', 'color: white; background-color: black;');
     }
-    else{
-    event.preventDefault();
-    }
-}
+   else if (evt.currentTarget.classList.contains('active') == true) {
+    clicked.classList.remove('active');
+      clicked.removeAttribute('style');
+    /*clicked.addEventListener('click', () =>{
+      clicked.classList.remove('active');
+      clicked.removeAttribute('style');
+ });*/
+   }
+//}
 //event.preventDefault();
 };
 
 
-let a = [...document.querySelectorAll('a')];
+
+
+let a = document.querySelectorAll('a');
 //console.log(a);
 click = () =>{
 for(let h=0; h<a.length; h++){
@@ -250,7 +257,7 @@ for(let h=0; h<a.length; h++){
  //console.log(secs[h]);
  //console.log(id);
   a[h].addEventListener("click", (event) =>{
-//console.log(a[h]);
+//console.log(id[h]);
    id.scrollIntoView({behavior: 'smooth'});
    checkingclicks(event);
 
