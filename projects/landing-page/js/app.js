@@ -219,6 +219,27 @@ document.addEventListener("scroll", () =>{viewport()});
  * This is the click function declared globaly, it is looping through the <a> tag whenever it is clicked the addeventlistener
  * is tiggered to get the scrollintoview() to scroll smoothly to the sections ids.
  */
+
+ const checkingclicks = (event) => {
+  let  clicked = event.target;
+
+  //console.log(clicked);
+  let getid;
+  for(let h =0; h<getsections.length; h++){
+    getid = document.getElementById(`section${h+1}`);
+    if(clicked){
+    //console.log(getclass[h]);
+    clicked.classList.add('active');
+    clicked.setAttribute('style', 'color: white; background-color: black;');
+    }
+    else{
+    event.preventDefault();
+    }
+}
+//event.preventDefault();
+};
+
+
 let a = [...document.querySelectorAll('a')];
 //console.log(a);
 click = () =>{
@@ -229,19 +250,9 @@ for(let h=0; h<a.length; h++){
  //console.log(secs[h]);
  //console.log(id);
   a[h].addEventListener("click", (event) =>{
-
+//console.log(a[h]);
    id.scrollIntoView({behavior: 'smooth'});
-
-   if (a[h].clicked){
-     //event.preventDefault();
-    a[h].classList.remove('active');
-    a[h].removeAttribute('style');
-   }
-
-   else if (a[h].click){
-    a[h].classList.add('active');
-    a[h].setAttribute('style', 'color: white; background-color: black;');
-   }
+   checkingclicks(event);
 
   //console.log(id);
   });
@@ -249,23 +260,8 @@ for(let h=0; h<a.length; h++){
 };
 //click();
 
-/*const checkingclicks = () => {
 
-  let getclass = document.getElementsByClassName('menu__link');
-  for(let h =0; h<getclass.length; h++){
-
-
-      if(getclass[h].addEventListener('click',()=>click())){
-       getclass[h].classList.add("active");
-        getclass[h].style.backgroundColor = 'black';
-      }
-      else{
-       getclass[h].classList.remove("active");
-      }
-
-}
-};
-checkingclicks();*/
+//checkingclicks();
 
 // Set sections as active
 
