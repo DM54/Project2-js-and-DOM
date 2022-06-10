@@ -218,7 +218,20 @@ list();
 /*This event listener listen for scroll and check viewport function
 * where it check which section is in or nearest top view to add class as active
 */
-document.addEventListener("scroll", () =>{viewport()});
+document.addEventListener("scroll", () =>{
+  viewport();
+  let timer;
+  let pageheader = document.getElementById('navbar__list');
+  if (pageheader.style.display==='none'){
+    pageheader.style.display = 'block';
+  }
+  else{
+  timer = setTimeout(() => {
+   pageheader.style.display = 'none';
+  }, 3000);
+}
+
+});
 // Scroll to section on link click
 /**
  * This is the click function declared globaly, it is looping through the <a> tag whenever it is clicked the addeventlistener
