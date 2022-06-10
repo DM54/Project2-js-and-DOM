@@ -131,33 +131,38 @@ const h2 = () =>{
  * using built in function called .getBoundingClientRect().
  * Each ids will be set class attributes and then will compare the top and bottom size with the
  * window height. So the window height is 918, when the top is less than and bottom is greater than
- *  the window height it should make the classes as active when it is in the view or near in view. But, if
- * it is not then it should remove the classes as active. A event listener is added at the end where it call the viewport
+ *  the window height it should make the classes as active and highlight each tab at the navbar when it is in the view or near in view. But, if
+ * it is not then it should remove the classes as active and remove the highlighted tab. A event listener is added at the end where it call the viewport
  * function when it is scrolling.
  */
 
 const viewport = () =>{
   let sectionbox;
   let top;
-  for(let i=1; i<=getsections.length; i++){
-    sectionbox = document.getElementById(`section${i}`);
+  for(let i=0; i<getsections.length; i++){
+    sectionbox = document.getElementById(`section${i+1}`);
   //console.log(sectionbox);
   rectangle = sectionbox.getBoundingClientRect();
   sectionbox.className === '';
   sectionbox.setAttribute('class', '');
   //top = sectionbox.scrollTop += rectangle.top;
+  let id = document.querySelectorAll('a');
 
    if((rectangle.top <= window.innerHeight) && (rectangle.bottom >= window.innerHeight)){
 
-    sectionbox.classList.add('active');
-    /*let id = [...document.querySelectorAll('a')];
-    console.log(id);
-    id.style.backgroundColor = 'black';*/
+       sectionbox.classList.add('active');
+      if(sectionbox.className === 'active'){
+           id[i].setAttribute('style', 'color: white; background-color: black;');
+      }
 
     }
     else{
-      sectionbox.classList.remove('active');
+
+    sectionbox.classList.remove('active');
+    id[i].removeAttribute('style');
+
     }
+
      //console.log(window.innerHeight);
     //console.log( "Left: " + rectangle.left+ " Top:" + rectangle.top + " Bottom " + rectangle.bottom);
 }
@@ -219,30 +224,29 @@ document.addEventListener("scroll", () =>{viewport()});
  * This is the click function declared globaly, it is looping through the <a> tag whenever it is clicked the addeventlistener
  * is tiggered to get the scrollintoview() to scroll smoothly to the sections ids.
  */
- let  clicked;
+ /*let  clicked;
  const checkingclicks = (evt) => {
   clicked = evt.target;
 
   //console.log(clicked);
-  let getid;
+  let getid;*/
   /*for(let h =0; h<getsections.length; h++){
     getid = document.getElementById(`section${h+1}`);*/
-    if(clicked.classList.contains('active') == false){
+    /*if(clicked.classList.contains('active') == false){
     //console.log(getclass[h]);
     clicked.classList.add('active');
     clicked.setAttribute('style', 'color: white; background-color: black;');
     }
-   else if (evt.currentTarget.classList.contains('active') == true) {
-    clicked.classList.remove('active');
-      clicked.removeAttribute('style');
-    /*clicked.addEventListener('click', () =>{
+   else if(clicked.classList.contains('active') == true) {
+    clicked.removeEventListener('click', ()=>{
       clicked.classList.remove('active');
       clicked.removeAttribute('style');
- });*/
+    });
    }
+   evt.preventDefault();
 //}
 //event.preventDefault();
-};
+};*/
 
 
 
@@ -253,20 +257,32 @@ click = () =>{
 for(let h=0; h<a.length; h++){
   //console.log(a[h]);
  let id = document.getElementById(`section${h+1}`);
- //let secs = document.querySelectorAll('section');
- //console.log(secs[h]);
- //console.log(id);
-  a[h].addEventListener("click", (event) =>{
-//console.log(id[h]);
-   id.scrollIntoView({behavior: 'smooth'});
-   checkingclicks(event);
+ a[h].addEventListener("click", (event) =>{
+  //console.log(id[h]);
+     id.scrollIntoView({behavior: 'smooth'});
 
-  //console.log(id);
-  });
-}
+      a[h].classList.add('active');
+      a[h].setAttribute('style', 'color: white; background-color: black;');
+
+    }, true);
+
+
+     //checkingclicks(event);
+
+ }
 };
 //click();
+/*for (let i=0; i<a.length; i++){
+  a[i].addEventListener('click', () =>{
+    if(click()){
+      if(a[i].className === 'active'){
+        a[i].classList.remove('active');
+        a[i].removeAttribute('style');
+      }
 
+    }
+  }, true);
+}*/
 
 //checkingclicks();
 
