@@ -217,6 +217,7 @@ list();
 */
 /*This event listener listen for scroll and check viewport function
 * where it check which section is in or nearest top view to add class as active
+* also implemented a timer whenever it stop scrolling it will hide the navbar until it is scrolling again.
 */
 document.addEventListener("scroll", () =>{
   viewport();
@@ -228,7 +229,7 @@ document.addEventListener("scroll", () =>{
   else{
   timer = setTimeout(() => {
    pageheader.style.display = 'none';
-  }, 3000);
+  }, 10000);
 }
 
 });
@@ -237,6 +238,23 @@ document.addEventListener("scroll", () =>{
  * This is the click function declared globaly, it is looping through the <a> tag whenever it is clicked the addeventlistener
  * is tiggered to get the scrollintoview() to scroll smoothly to the sections ids.
  */
+
+
+ let a = document.querySelectorAll('a');
+ //console.log(a);
+ click = () =>{
+ for(let h=0; h<a.length; h++){
+   //console.log(a[h]);
+  let id = document.getElementById(`section${h+1}`);
+  a[h].addEventListener("click", (event) =>{
+   //console.log(id[h]);
+      id.scrollIntoView({behavior: 'smooth'});
+
+     });
+  }
+ };
+
+
  /*let  clicked;
  const checkingclicks = (evt) => {
   clicked = evt.target;
@@ -264,26 +282,6 @@ document.addEventListener("scroll", () =>{
 
 
 
-let a = document.querySelectorAll('a');
-//console.log(a);
-click = () =>{
-for(let h=0; h<a.length; h++){
-  //console.log(a[h]);
- let id = document.getElementById(`section${h+1}`);
- a[h].addEventListener("click", (event) =>{
-  //console.log(id[h]);
-     id.scrollIntoView({behavior: 'smooth'});
-
-      a[h].classList.add('active');
-      a[h].setAttribute('style', 'color: white; background-color: black;');
-
-    }, true);
-
-
-     //checkingclicks(event);
-
- }
-};
 //click();
 /*for (let i=0; i<a.length; i++){
   a[i].addEventListener('click', () =>{
