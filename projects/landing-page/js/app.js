@@ -29,16 +29,11 @@
  */
 
 let getsections = [...document.querySelectorAll('section')];
-/*let getidsection = document.getElementById('section');
-console.log(getidsection);*/
 /**
  * Declared rectangle which are used in the scroll event listener function
  * and for the getBoundingClientRect().
  */
 let rectangle;
-/* Declared getid and text for getidsections function.
-let getid;
-let text;*/
 
 // Use in list function, the unorderlist (ul) has navbar__list id where it will have li node being added
 //whenever new section is made from the createsection function.
@@ -51,21 +46,6 @@ let click =()=>{};
  * Start Helper Functions
  *
 */
-/**
- * This function return the sections id value, loop the getsection array to get section tags
- * then get the id attribute value.
- */
-/*const getidsections = () =>{
-
-        for(let i=0; i<=getsections.length-1; i++){
-          getid = document.getElementsByTagName('section')[i];
-          console.log(getid);
-          text = getid.getAttribute('id');
-
-        }
-        return text;
-
-};*/
 
 /**
  * This function is called in the createsection function whenever new section is created
@@ -78,7 +58,6 @@ const h2 = () =>{
   for(let j=1; j<=getsections.length; j++){
 
     const geth2 = document.getElementById(`section${j}`).querySelector('h2');
-    //console.log(geth2);
     geth2.innerHTML=`Section ${j}`;
   }
 
@@ -102,17 +81,12 @@ const h2 = () =>{
  *
  */
 
- const getnav = document.querySelector('#navbar__list');
- //getnav.classList.add('menu__link');
-
-
  const list = () => {
 
    for (let i = 1; i<=getsections.length; i++){
      const navlist = document.createElement('li');
      const anchor = document.createElement('a');
      anchor.innerHTML += `Section ${i}`;
-     //anchor.setAttribute('href', `#section${i}`);
      anchor.setAttribute('href', `javascript:click()`);
      anchor.classList.add('menu__link');
      navlist.appendChild(anchor);
@@ -138,14 +112,12 @@ const h2 = () =>{
 
 const viewport = () =>{
   let sectionbox;
-  let top;
   for(let i=0; i<getsections.length; i++){
     sectionbox = document.getElementById(`section${i+1}`);
-  //console.log(sectionbox);
   rectangle = sectionbox.getBoundingClientRect();
   sectionbox.className === '';
   sectionbox.setAttribute('class', '');
-  //top = sectionbox.scrollTop += rectangle.top;
+
   let id = document.querySelectorAll('a');
 
    if((rectangle.top <= window.innerHeight) && (rectangle.bottom >= window.innerHeight)){
@@ -163,15 +135,10 @@ const viewport = () =>{
 
     }
 
-     //console.log(window.innerHeight);
-    //console.log( "Left: " + rectangle.left+ " Top:" + rectangle.top + " Bottom " + rectangle.bottom);
 }
 };
 
-// Scroll to anchor ID using scrollTO event
 
-
-// Build menu
 /**
  * num will be for the amount of sections want to be created, for example, num =2 will create two more sections
  * for the menu.
@@ -184,11 +151,8 @@ const viewport = () =>{
  */
 
  const createsection = (num) =>{
-  //let section = document.querySelector('section');
   let maintag = document.querySelector('main');
-  //console.log(maintag);
   let createnewsection;
-  //let count =0;
   for(let i=1; i<=num; i++){
 
       createnewsection= document.createElement('section');
@@ -201,13 +165,12 @@ const viewport = () =>{
       getsections.push(createnewsection);
       maintag.append(createnewsection);
   }
-  //console.log(getsections);
+
   h2();
 };
-createsection(2);
+createsection(3);
 list();
-//getidsections();
-//viewport();
+
 
 
 /**
@@ -223,7 +186,7 @@ document.addEventListener("scroll", () =>{
   viewport();
   let timer;
   let pageheader = document.getElementById('navbar__list');
-  if (pageheader.style.display==='none'){
+  if (pageheader.style.display ==='none'){
     pageheader.style.display = 'block';
   }
   else{
@@ -233,71 +196,24 @@ document.addEventListener("scroll", () =>{
 }
 
 });
-// Scroll to section on link click
+
 /**
  * This is the click function declared globaly, it is looping through the <a> tag whenever it is clicked the addeventlistener
  * is tiggered to get the scrollintoview() to scroll smoothly to the sections ids.
  */
 
-
  let a = document.querySelectorAll('a');
- //console.log(a);
+
  click = () =>{
  for(let h=0; h<a.length; h++){
-   //console.log(a[h]);
+
   let id = document.getElementById(`section${h+1}`);
   a[h].addEventListener("click", (event) =>{
-   //console.log(id[h]);
       id.scrollIntoView({behavior: 'smooth'});
 
      });
   }
  };
-
-
- /*let  clicked;
- const checkingclicks = (evt) => {
-  clicked = evt.target;
-
-  //console.log(clicked);
-  let getid;*/
-  /*for(let h =0; h<getsections.length; h++){
-    getid = document.getElementById(`section${h+1}`);*/
-    /*if(clicked.classList.contains('active') == false){
-    //console.log(getclass[h]);
-    clicked.classList.add('active');
-    clicked.setAttribute('style', 'color: white; background-color: black;');
-    }
-   else if(clicked.classList.contains('active') == true) {
-    clicked.removeEventListener('click', ()=>{
-      clicked.classList.remove('active');
-      clicked.removeAttribute('style');
-    });
-   }
-   evt.preventDefault();
-//}
-//event.preventDefault();
-};*/
-
-
-
-
-//click();
-/*for (let i=0; i<a.length; i++){
-  a[i].addEventListener('click', () =>{
-    if(click()){
-      if(a[i].className === 'active'){
-        a[i].classList.remove('active');
-        a[i].removeAttribute('style');
-      }
-
-    }
-  }, true);
-}*/
-
-//checkingclicks();
-
-// Set sections as active
 
 
 
