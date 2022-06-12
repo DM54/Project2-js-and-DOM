@@ -71,7 +71,6 @@ const h2 = () =>{
  *
 */
 
-// build the nav
 
 /**
  * First look for navbar__menu class and navbar__list id, made arrow function called list
@@ -96,9 +95,6 @@ const h2 = () =>{
 };
 
 
-
-
-// Add class 'active' to section when near top of viewport
 /**
  * The viewport function will go through a loop of getsections array and
  * loop through the section ids which then will get the size of each section
@@ -114,26 +110,26 @@ const viewport = () =>{
   let sectionbox;
   for(let i=0; i<getsections.length; i++){
     sectionbox = document.getElementById(`section${i+1}`);
-  rectangle = sectionbox.getBoundingClientRect();
-  sectionbox.className === '';
-  sectionbox.setAttribute('class', '');
+    rectangle = sectionbox.getBoundingClientRect();
+    sectionbox.className === '';
+    sectionbox.setAttribute('class', '');
 
-  let id = document.querySelectorAll('a');
+    let id = document.querySelectorAll('a');
 
-   if((rectangle.top <= window.innerHeight) && (rectangle.bottom >= window.innerHeight)){
+    if((rectangle.top <= window.innerHeight) && (rectangle.bottom >= window.innerHeight)){
 
-       sectionbox.classList.add('active');
-      if(sectionbox.className === 'active'){
-           id[i].setAttribute('style', 'color: white; background-color: black;');
+        sectionbox.classList.add('active');
+        if(sectionbox.className === 'active'){
+            id[i].setAttribute('style', 'color: white; background-color: black;');
+        }
+
       }
+      else{
 
-    }
-    else{
+      sectionbox.classList.remove('active');
+      id[i].removeAttribute('style');
 
-    sectionbox.classList.remove('active');
-    id[i].removeAttribute('style');
-
-    }
+      }
 
 }
 };
@@ -205,14 +201,14 @@ document.addEventListener("scroll", () =>{
  let a = document.querySelectorAll('a');
 
  click = () =>{
- for(let h=0; h<a.length; h++){
+  for(let h=0; h<a.length; h++){
 
-  let id = document.getElementById(`section${h+1}`);
-  a[h].addEventListener("click", (event) =>{
-      id.scrollIntoView({behavior: 'smooth'});
+    let id = document.getElementById(`section${h+1}`);
+    a[h].addEventListener("click", (event) =>{
+        id.scrollIntoView({behavior: 'smooth'});
 
-     });
-  }
+      });
+    }
  };
 
 
