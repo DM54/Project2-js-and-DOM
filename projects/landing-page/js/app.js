@@ -116,7 +116,7 @@ const viewport = () =>{
 
     let id = document.querySelectorAll('a');
 
-    if((rectangle.top <= window.innerHeight) && (rectangle.bottom >= window.innerHeight)){
+    if((rectangle.top < (window.innerHeight/2)) && (rectangle.bottom > (window.innerHeight/2))){
 
         sectionbox.classList.add('active');
         if(sectionbox.className === 'active'){
@@ -164,7 +164,7 @@ const viewport = () =>{
 
   h2();
 };
-createsection(3);
+createsection(2);
 list();
 
 
